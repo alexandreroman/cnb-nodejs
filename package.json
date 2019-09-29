@@ -1,0 +1,15 @@
+{
+  "name": "cnb-nodejs",
+  "version": "1.0.0",
+  "description": "NodeJS app built with Cloud-native Buildpacks",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexandre Roman",
+  "license": "ASL-2.0",
+  "dependencies": {
+    "express": "^4.17.1",
+    "properties-reader": "^0.3.1"
+  }
+}
