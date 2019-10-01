@@ -23,7 +23,7 @@ const port = process.env.PORT || 8080
 var osName
 if(fs.existsSync("/etc/os-release")) {
   props = PropertiesReader("/etc/os-release")
-  osName = props.get("PRETTY_NAME")
+  osName = props.get("PRETTY_NAME").replace(/\"/g, "")
 }
 
 const info = {
