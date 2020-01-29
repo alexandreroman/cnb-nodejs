@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: cnb-nodejs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cnb-nodejs
+  template:
+    metadata:
+      labels:
+        app: cnb-nodejs
+    spec:
+      containers:
+        - image: alexandreroman/cnb-nodejs
+          name: app
+          resources:
+            limits:
+              memory: 256Mi
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /
+            initialDelaySeconds: 60
+            periodSeconds: 2
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /
+            initialDelaySeconds: 10
