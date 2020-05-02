@@ -1,5 +1,5 @@
 nodejs:
-  # this allows you to specify a version constraint for the node depdendency
+  # this allows you to specify a version constraint for the node dependency
   # any valid semver constaints (e.g. 10.*) are also acceptable
   version: ~12
 
