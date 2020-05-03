@@ -8,8 +8,15 @@
   },
   "author": "Alexandre Roman",
   "license": "ASL-2.0",
+  "peerDependencies": {
+    "prom-client": "12.0.0"
+  },
   "dependencies": {
+    "child_process": "^1.0.2",
     "express": "^4.17.1",
+    "os": "^0.1.1",
+    "prom-client": "^12.0.0",
+    "prometheus-api-metrics": "^2.2.5",
     "properties-reader": "^0.3.1"
   }
 }

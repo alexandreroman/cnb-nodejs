@@ -20,7 +20,7 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 8080
 
-var osName
+var osName = "";
 if(fs.existsSync("/etc/os-release")) {
   props = PropertiesReader("/etc/os-release")
   osName = props.get("PRETTY_NAME").replace(/\"/g, "")
@@ -40,6 +40,26 @@ app.get('/info', function (req, res) {
   res.setHeader("Content-Type", "application/json");
   res.send(info)
 })
+
+var opensslVersion = "";
+const os = require('os');
+const opensslVersionOutput = require('child_process').execSync("openssl version -a").toString();
+const opensslVersionLines = opensslVersionOutput.split(os.EOL);
+opensslVersion = opensslVersionLines[0].trim();
+if(!opensslVersionLines[1].includes("not available")) {
+  opensslVersion += (" " + opensslVersionLines[1].trim());
+}
+
+const apiMetrics = require('prometheus-api-metrics');
+app.use(apiMetrics())
+
+const Prometheus = require('prom-client');
+const appInfo = new Prometheus.Counter({
+  name: 'app_info_total',
+  help: 'Get application info',
+  labelNames: ["application_name", "nodejs_version", "openssl_version"]
+});
+appInfo.labels("cnb-nodejs", info.node, opensslVersion).inc();
 
 app.use(express.static('static'));
 app.listen(port, function () {
