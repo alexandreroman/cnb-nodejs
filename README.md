@@ -73,7 +73,7 @@ $ kubectl apply -f k8s
 
 This app will be deployed to namespace `cnb-nodejs`:
 ```bash
-kubectl -n cnb-springboot get pod,deployment,svc
+kubectl -n cnb-nodejs get pod,deployment,svc
 NAME                       READY   STATUS    RESTARTS   AGE
 pod/app-7c7957cb94-lpmk8   1/1     Running   0          35m
 
