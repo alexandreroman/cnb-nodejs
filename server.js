@@ -50,16 +50,21 @@ if(!opensslVersionLines[1].includes("not available")) {
   opensslVersion += (" " + opensslVersionLines[1].trim());
 }
 
-const apiMetrics = require('prometheus-api-metrics');
-app.use(apiMetrics())
-
 const Prometheus = require('prom-client');
+const promReg = new Prometheus.Registry();
+
 const appInfo = new Prometheus.Counter({
   name: 'app_info_total',
   help: 'Get application info',
   labelNames: ["application_name", "nodejs_version", "openssl_version"]
 });
 appInfo.labels("cnb-nodejs", info.node, opensslVersion).inc();
+promReg.registerMetric(appInfo);
+
+app.get('/metrics', (req, res) => {
+  res.set('Content-Type', promReg.contentType);
+  res.end(promReg.metrics());
+});
 
 app.use(express.static('static'));
 app.listen(port, function () {
