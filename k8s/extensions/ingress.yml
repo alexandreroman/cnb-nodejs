@@ -1,0 +1,14 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: cnb-nodejs
+spec:
+  rules:
+    - host: nodejs.withtanzu.com
+      http:
+        paths:
+          - backend:
+              serviceName: app
+              servicePort: 80
