@@ -39,3 +39,17 @@ spec:
               port: 8080
               path: /
             initialDelaySeconds: 10
+#          volumeMounts:
+#            - mountPath: /app-data
+#              name: data
+#      volumes:
+#        - name: data
+#          persistentVolumeClaim:
+#            claimName: data
+#      initContainers:
+#        - name: set-volume-permissions
+#          image: busybox
+#          command: ["sh", "-c", "chown -R 1000:1000 /app-data"]
+#          volumeMounts:
+#            - name: data
+#              mountPath: /app-data

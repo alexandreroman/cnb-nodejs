@@ -68,6 +68,11 @@ app.get('/metrics', (req, res) => {
   res.end(promReg.metrics());
 });
 
+const appDataDir = process.env.APP_DATA || '/app-data';
+if(fs.existsSync(appDataDir)) {
+  app.use(express.static(appDataDir));
+}
+
 app.use(express.static('static'));
 app.listen(port, function () {
   console.log(`Server listening on port ${port}`)
