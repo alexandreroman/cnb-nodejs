@@ -31,14 +31,16 @@ const info = {
   os: osName
 }
 
+const greetings = process.env.GREETINGS || 'Hello world!';
+
 app.get('/greetings', function (req, res) {
   res.setHeader("Content-Type", "text/plain");
-  res.send('Hello world!')
+  res.end(greetings);
 })
 
 app.get('/info', function (req, res) {
   res.setHeader("Content-Type", "application/json");
-  res.send(info)
+  res.end(info)
 })
 
 var opensslVersion = "";
