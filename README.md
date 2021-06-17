@@ -17,7 +17,7 @@ You'll need a Docker daemon running to build container images.
 
 Use the Paketo builder:
 ```bash
-$ pack set-default-builder gcr.io/paketo-buildpacks/builder:base
+$ pack config default-builder gcr.io/paketo-buildpacks/builder:base
 ```
 
 You're now ready to use CNB with Paketo.
@@ -32,7 +32,7 @@ Successfully built image myorg/cnb-nodejs
 After a couple of minutes, your container image will be published 
 to your local Docker daemon:
 ```bash
-$ docker image ls
+$ docker image ls | grep  cnb-nodejs
 REPOSITORY                             TAG                  IMAGE ID    
 myorg/cnb-nodejs                       latest               b1a0d242e5ec
 ```
