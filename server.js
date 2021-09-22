@@ -74,6 +74,18 @@ if(fs.existsSync(appDataDir)) {
 }
 
 app.use(express.static('static'));
-app.listen(port, function () {
+const server = app.listen(port, function () {
   console.log(`Server listening on port ${port}`)
 })
+
+function shutDown() {
+  server.close(() => {
+      process.exit(0);
+  });
+  setTimeout(() => {
+      process.exit(1);
+  }, 10000);
+}
+
+process.on('SIGTERM', shutDown);
+process.on('SIGINT', shutDown);
