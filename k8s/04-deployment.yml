@@ -22,6 +22,16 @@ spec:
         prometheus.io/path: "/metrics"
         prometheus.io/port:  "8080"
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - cnb-nodejs
+            topologyKey: "kubernetes.io/hostname"
       containers:
         - image: alexandreroman/cnb-nodejs
           name: app
