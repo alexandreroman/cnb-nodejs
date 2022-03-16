@@ -33,7 +33,7 @@ spec:
                 - cnb-nodejs
             topologyKey: "kubernetes.io/hostname"
       containers:
-        - image: alexandreroman/cnb-nodejs
+        - image: ghcr.io/alexandreroman/cnb-nodejs
           name: app
           resources:
             limits:
