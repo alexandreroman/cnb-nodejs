@@ -4,6 +4,7 @@
   "description": "NodeJS app built with Cloud-native Buildpacks",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": ""
   },
   "author": "Alexandre Roman",
