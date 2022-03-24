@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: cnb-nodejs
+  description: NodeJS app built with CNCF Buildpacks
+  tags:
+  - app-accelerator
+  - node
+  - express
+  - tanzu
+  annotations:
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=cnb-nodejs'
+spec:
+  type: service
+  lifecycle: experimental
+  owner: default-team
